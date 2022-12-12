@@ -47,11 +47,11 @@ export async function getStaticProps(Context) {
 
 
 
-    let data = await fetch('http://localhost:3000/api/getMetadata', {
+    let data = await fetch(process.env.vercel+'/api/getMetadata', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            url: 'http://kricketwala.com/' + slugString
+            url: process.env.main + slugString
         })
     })
 
