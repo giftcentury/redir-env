@@ -45,7 +45,7 @@ export async function getStaticProps(Context) {
     });
 
     mainurl = mainurl.toString()
-    let urls = mainurl.split(' ')
+    let urls = mainurl.split('__')
     console.log('harish : '+urls[1])
 
 
