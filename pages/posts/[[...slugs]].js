@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useEffect,useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 
 export default function Comp({ metaTags }) {
 
     useLayoutEffect(() => {
-            location.href = metaTags['og:url']
-         }, [])
+        // location.href = metaTags['og:url']
+    }, [])
 
 
     return (
@@ -16,11 +16,23 @@ export default function Comp({ metaTags }) {
                 <Head>
                     {metaTags && Object.entries(metaTags).map((entry) => {
 
-                        console.log(entry)
-                        return (
 
-                            <meta key={entry[0]} name={entry[0]} content={entry[1]} />
-                        )
+                        console.log(entry)
+
+                        if (entry[0] == 'og:image') {
+                            return (
+                                <meta key={entry[0]} name={entry[0]} content={entry[1].replace(',', '')} />
+
+                            )
+                        }
+                        else {
+
+                            return (
+
+                                <meta key={entry[0]} name={entry[0]} content={entry[1]} />
+                            )
+                        }
+
                     }
                     )}
                 </Head>
@@ -46,16 +58,17 @@ export async function getStaticProps(Context) {
 
     mainurl = mainurl.toString()
     let urls = mainurl.split('__')
-    console.log('harish : '+urls[1])
+    console.log('harish : ' + urls[1])
+    console.log('harish : ' + mainurl)
 
 
 
-    let data = await fetch(process.env.vercel+'api/getMetadata', {
+    let data = await fetch(process.env.vercel + 'api/getMetadata', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            url: process.env.main + mainurl,
-            thumbnail:urls[1]
+            url: process.env.main + mainurl.split('__')[0],
+            thumbnail: urls[1].replace(',', '')
         })
     })
 
