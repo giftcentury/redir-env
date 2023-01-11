@@ -18,7 +18,15 @@ export default async function handler(req, res) {
       const response = await fetch(url);
       const html = await response.text();
       const doc = domino.createWindow(html).document;
-      const metadata = getMetadata(doc, url);
+      let metadata = getMetadata(doc, url);
+
+      let image = req.body.thumbnail? req.body.thumbnail: metadata.image  
+
+      metadata.image = image
+
+
+
+
 
       res.json({ metadata, url })
 
