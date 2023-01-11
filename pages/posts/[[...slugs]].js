@@ -21,7 +21,7 @@ export default function Comp({ metaTags }) {
 
                         if (entry[0] == 'og:image') {
                             return (
-                                <meta key={entry[0]} name={entry[0]} content={entry[1].replace(/,/g, '/')} />
+                                <meta key={entry[0]} name={entry[0]} content={entry[1].replace(',',"//").replaceAll(",","/")} />
 
                             )
                         }
@@ -52,9 +52,9 @@ export async function getStaticProps(Context) {
     const slugs = Context
     mainurl = slugs.params.slugs
 
-    mainurl.map(x => {
-        slugString += x + '/'
-    });
+    // let dta = mainurl.map(x => {
+    //     slugString += x + '/'
+    // });
 
     mainurl = mainurl.toString()
     let urls = mainurl.split('image')
