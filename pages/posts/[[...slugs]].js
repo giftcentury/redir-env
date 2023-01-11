@@ -5,7 +5,7 @@ import React, { useEffect,useLayoutEffect } from 'react'
 export default function Comp({ metaTags }) {
 
     useLayoutEffect(() => {
-            location.href = metaTags['og:url']
+            // location.href = metaTags['og:url']
          }, [])
 
 
@@ -43,20 +43,24 @@ export async function getStaticProps(Context) {
     mainurl.map(x => {
         slugString += x + '/'
     });
-    console.log(slugString)
+
+    mainurl = mainurl.toString()
+    let urls = mainurl.split(' ')
+    console.log('harish : '+urls[1])
 
 
 
-    let data = await fetch(process.env.vercel+'api/getMetadata', {
+    let data = await fetch( process.env.vercel +'api/getMetadata', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            url: process.env.main + slugString
+            url: process.env.main + slugString,
+            thumbnail:urls[1]
         })
     })
 
     data = await data.json()
-    console.log(data.metadata)
+    // console.log(data.metadata)
 
 
     const metaTags = {
