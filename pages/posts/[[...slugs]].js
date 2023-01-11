@@ -21,7 +21,7 @@ export default function Comp({ metaTags }) {
 
                         if (entry[0] == 'og:image') {
                             return (
-                                <meta key={entry[0]} name={entry[0]} content={entry[1].replace(',',"//").replaceAll(",","/")} />
+                                <meta key={entry[0]} name={entry[0]} content={entry[1].replace(':',"://").replaceAll(",","/")} />
 
                             )
                         }
