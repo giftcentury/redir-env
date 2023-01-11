@@ -21,7 +21,7 @@ export default function Comp({ metaTags }) {
 
                         if (entry[0] == 'og:image') {
                             return (
-                                <meta key={entry[0]} name={entry[0]} content={entry[1].replace(':',"://").replaceAll(",","/")} />
+                                <meta key={entry[0]} name={entry[0]} content={entry[1].replace(':', "://").replaceAll(",", "/")} />
 
                             )
                         }
@@ -35,6 +35,11 @@ export default function Comp({ metaTags }) {
 
                     }
                     )}
+
+                    <meta  name={'og:image:height'} content={720} />
+                    <meta  name={'og:image:width'} content={1280} />
+
+
                 </Head>
 
 
@@ -58,8 +63,8 @@ export async function getStaticProps(Context) {
 
     mainurl = mainurl.toString()
     let urls = mainurl.split('image')
-    console.log('harish : ' + urls[1])
-    console.log('harish : ' + mainurl)
+    console.log('harish : ' + urls)
+    console.log('harish : ' + slugs.params)
 
 
 
