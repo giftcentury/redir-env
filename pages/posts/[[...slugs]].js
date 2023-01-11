@@ -57,7 +57,7 @@ export async function getStaticProps(Context) {
     });
 
     mainurl = mainurl.toString()
-    let urls = mainurl.split('__')
+    let urls = mainurl.split('image')
     console.log('harish : ' + urls[1])
     console.log('harish : ' + mainurl)
 
@@ -67,7 +67,7 @@ export async function getStaticProps(Context) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            url: process.env.main + mainurl.split('__')[0],
+            url: process.env.main + mainurl.split('image')[0],
             thumbnail: urls[1].replace(',', '')
         })
     })
