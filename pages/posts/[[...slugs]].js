@@ -36,7 +36,7 @@ export default function Comp({ metaTags }) {
                     }
                     )}
 
-                    <meta  name={'og:image:height'} content={600} />
+                    <meta  name={'og:image:height'} content={1020} />
                     <meta  name={'og:image:width'} content={600} />
 
 
