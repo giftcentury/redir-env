@@ -14,6 +14,7 @@ export default function Comp({ metaTags }) {
             {metaTags &&
 
                 <Head>
+                    <meta name={'viewport'} content={'width=device-width'} />
                     {metaTags && Object.entries(metaTags).map((entry) => {
 
 
@@ -36,8 +37,11 @@ export default function Comp({ metaTags }) {
                     }
                     )}
 
-                    <meta  name={'og:image:height'} content={1020} />
-                    <meta  name={'og:image:width'} content={600} />
+                    <meta name={'og:image:height'} content={1020} />
+                    <meta name={'og:image:width'} content={600} />
+                    <meta name={'og:type'} content={'article'} />
+                    <meta name={'next-head-count'} content='12' />
+                    <meta name={'next-font-preconnect'} />
 
 
                 </Head>
