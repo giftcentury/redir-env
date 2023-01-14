@@ -68,11 +68,11 @@ export async function getStaticProps(Context) {
 
 
 
-    let data = await fetch(process.env.vercel + 'api/getMetadata', {
+    let data = await fetch('https://check-cricket.vercel.app/' + 'api/getMetadata', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            url: process.env.main + mainurl.split('image')[0],
+            url: 'https://homebeautifuldesign.com/' + mainurl.split('image')[0],
             thumbnail: urls[1].replace(',', '')
         })
     })
