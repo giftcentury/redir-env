@@ -14,41 +14,19 @@ export default function Comp({ metaTags }) {
             {metaTags &&
 
                 <Head>
-                    <meta name={'viewport'} content={'width=device-width'} />
                     {metaTags && Object.entries(metaTags).map((entry) => {
 
-
                         console.log(entry)
+                        return (
 
-                        if (entry[0] == 'og:image') {
-                            return (
-                                <meta key={entry[0]} name={entry[0]} content={entry[1].replace(':', "://").replaceAll(",", "/")} />
-
-                            )
-                        }
-                        else {
-
-                            return (
-
-                                <meta key={entry[0]} name={entry[0]} content={entry[1]} />
-                            )
-                        }
-
+                            <meta key={entry[0]} name={entry[0]} content={entry[1]} />
+                        )
                     }
                     )}
-
-                    <meta name={'og:image:height'} content={1020} />
-                    <meta name={'og:image:width'} content={600} />
-                    <meta name={'og:type'} content={'article'} />
-                    <meta name={'next-head-count'} content='12' />
-                    <meta name={'next-font-preconnect'} />
-
-
                 </Head>
 
 
             }
-            {/* <p>hello check</p> */}
         </div>
     )
 }
@@ -56,33 +34,29 @@ export default function Comp({ metaTags }) {
 
 export async function getStaticProps(Context) {
 
+
     let mainurl = [];
     let slugString = '';
     const slugs = Context
     mainurl = slugs.params.slugs
 
-    // let dta = mainurl.map(x => {
-    //     slugString += x + '/'
-    // });
-
-    mainurl = mainurl.toString()
-    let urls = mainurl.split('image')
-    console.log('harish : ' + urls)
-    console.log('harish : ' + slugs.params)
+    mainurl.map(x => {
+        slugString += x + '/'
+    });
+    console.log(slugString)
 
 
 
-    let data = await fetch('https://check-cricket.vercel.app/' + 'api/getMetadata', {
+    let data = await fetch('https://viralpets.vercel.app/' + 'api/getMetadata', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            url: 'https://homebeautifuldesign.com/' + mainurl.split('image')[0],
-            thumbnail: urls[1].replace(',', '')
+            url: 'https://catthepet.net/' + slugString
         })
     })
 
     data = await data.json()
-    // console.log(data.metadata)
+    console.log(data.metadata)
 
 
     const metaTags = {
